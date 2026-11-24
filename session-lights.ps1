@@ -653,12 +653,13 @@ $win.Add_MouseLeftButtonDown({ param($sender, $e)
     foreach ($c in @($rows.Children)) {
         if ($c.Tag -and $c.IsMouseOver) { foreach ($x in $c.Child.Children) { if ($x -is [System.Windows.Controls.Grid] -and $x.IsMouseOver) { return } } }
     }
-    $before = "$([int]$win.Left),$([int]$win.Top)"
-    try { $win.DragMove() } catch {}
-    if ("$([int]$win.Left),$([int]$win.Top)" -ne $before) { $cfg.left = [int]$win.Left; $cfg.top = [int]$win.Top; Save-Cfg; return }
-    # A click without moving opens that session in Claude and clears its unread dot.
+    # Note the row before DragMove: its mouse capture leaves IsMouseOver stale afterwards.
     $procId = 0
     foreach ($c in @($rows.Children)) { if ($c.Tag -and $c.IsMouseOver) { $procId = [int]$c.Tag; break } }
+    $x0 = $win.Left; $y0 = $win.Top
+    try { $win.DragMove() } catch {}
+    if ([math]::Abs($win.Left - $x0) -gt 3 -or [math]::Abs($win.Top - $y0) -gt 3) { $cfg.left = [int]$win.Left; $cfg.top = [int]$win.Top; Save-Cfg; return }
+    # A click (moved 3px or less) opens that session in Claude and clears its unread dot.
     if (-not $procId) { return }
     if ($script:unread.ContainsKey($procId)) { $script:unread.Remove($procId); Update-View }
     $msg = $null
