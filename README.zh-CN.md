@@ -88,3 +88,7 @@ powershell -NoProfile -File session-lights.ps1 -Probe     # 打印每个会话�
 - 不装 hooks 的话，分不出「正在压缩上下文」和「运行中」。
 - 打开会话依赖桌面版侧栏的界面结构，界面改版后可能失效；本地 Code 标签页会话没有深链接。
 - 只支持 Windows。
+
+## 许可证
+
+[MIT](LICENSE)

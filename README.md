@@ -88,3 +88,7 @@ powershell -NoProfile -File session-lights.ps1 -Probe     # print each session's
 - *Compacting context* cannot be told apart from *working* without hooks.
 - Opening a session relies on the desktop app's sidebar structure and may stop working after a UI change; local Code-tab sessions have no deep link.
 - Windows only.
+
+## License
+
+[MIT](LICENSE)
