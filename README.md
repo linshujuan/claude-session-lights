@@ -8,6 +8,12 @@ A small always-on-top Windows widget that shows one status light per running **C
 - No hooks needed for the status itself: it reads the per-session file Claude Code already writes to `~/.claude/sessions/<pid>.json`.
 - Read-only towards Claude: it never writes under `~/.claude` and never touches Claude's processes.
 
+![Session lights](docs/screenshot-en.png)
+
+With session names hidden (for screen sharing):
+
+![Session names hidden](docs/screenshot-hidden-names.png)
+
 ## Features
 
 - **Waiting detection that Claude Code itself does not report.** A turn that ends on a question is recorded as `idle`; the widget reads the transcript tail and shows it as *waiting* when the turn ended with an unanswered `AskUserQuestion`, a pending plan approval (`ExitPlanMode`), a wrap-up question, or a last line ending in `?` / `？`. The question text is shown in the row's tooltip.

@@ -8,6 +8,12 @@
 - 状态本身不需要 hooks：直接读 Claude Code 自己写的 `~/.claude/sessions/<pid>.json`。
 - 对 Claude 只读：不往 `~/.claude` 下写任何东西，也不碰 Claude 的进程。
 
+![会话状态指示灯](docs/screenshot-zh.png)
+
+隐藏会话名（适合共享屏幕时用）：
+
+![隐藏会话名](docs/screenshot-hidden-names.png)
+
 ## 功能
 
 - **补上 Claude Code 自己不报的「等你」**：回合以提问结束时，Claude Code 只记成 `idle`。指示灯会读对话记录末尾，遇到未回答的 `AskUserQuestion`、等待批准的计划（`ExitPlanMode`）、收尾时提的问题、或最后一行以 `?` / `？` 结尾，就显示为「等你处理」，悬停可看问题原文。
